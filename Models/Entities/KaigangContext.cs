@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace kaigang.Models.Entities
@@ -14,7 +15,7 @@ namespace kaigang.Models.Entities
           protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>().ToTable("Posts");
-            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<User>().ToTable("Users").HasAlternateKey(u => u.Email);
         }
     }
 }

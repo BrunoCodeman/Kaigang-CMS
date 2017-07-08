@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using kaigang.Models.Entities;
+
 
 namespace kaigang.Models.Repositories.Interfaces
 {

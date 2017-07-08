@@ -17,9 +17,6 @@ namespace kaigang.Models.Entities
         [EmailAddress]
         public string Email  { get; set; }
 
-        [Required]
-        public string Password  { get; set; }
-
         public IEnumerable<Post> Posts {get; set;}
     }
 }
