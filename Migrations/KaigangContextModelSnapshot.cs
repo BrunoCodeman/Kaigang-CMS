@@ -14,6 +14,7 @@ namespace kaigang.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
+<<<<<<< HEAD
                 .HasAnnotation("ProductVersion", "1.1.2");
 
             modelBuilder.Entity("kaigang.Models.Entities.Comment", b =>
@@ -71,6 +72,9 @@ namespace kaigang.Migrations
 
                     b.ToTable("Polls");
                 });
+=======
+                .HasAnnotation("ProductVersion", "1.1.1");
+>>>>>>> 6f95a84deafe7d06a3321b118e8898536ea9454c
 
             modelBuilder.Entity("kaigang.Models.Entities.Post", b =>
                 {
@@ -109,6 +113,7 @@ namespace kaigang.Migrations
 
                     b.Property<string>("Name");
 
+<<<<<<< HEAD
                     b.Property<Guid?>("PollID");
 
                     b.HasKey("ID");
@@ -128,6 +133,16 @@ namespace kaigang.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+=======
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Users");
+                });
+
+>>>>>>> 6f95a84deafe7d06a3321b118e8898536ea9454c
             modelBuilder.Entity("kaigang.Models.Entities.Post", b =>
                 {
                     b.HasOne("kaigang.Models.Entities.User", "Author")
@@ -135,6 +150,7 @@ namespace kaigang.Migrations
                         .HasForeignKey("AuthorID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
+<<<<<<< HEAD
 
             modelBuilder.Entity("kaigang.Models.Entities.User", b =>
                 {
@@ -142,6 +158,8 @@ namespace kaigang.Migrations
                         .WithMany("Voters")
                         .HasForeignKey("PollID");
                 });
+=======
+>>>>>>> 6f95a84deafe7d06a3321b118e8898536ea9454c
         }
     }
 }

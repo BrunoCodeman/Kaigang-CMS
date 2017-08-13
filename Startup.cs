@@ -36,7 +36,7 @@ namespace kaigang
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<IdentityDbContext>((s, optionsBuilder) => {
-                                                                optionsBuilder.UseMySql("Server=<ip>;database=kaigang;uid=<user>;pwd=<password>;", 
+                                                                optionsBuilder.UseMySql("", 
                                                                 b => {b.MigrationsAssembly("kaigang");} );
                                                                 });
             services.AddIdentity<IdentityUser, IdentityRole>()

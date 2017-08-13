@@ -18,7 +18,10 @@ namespace kaigang.Models.Entities
         public string Email  { get; set; }
 
         public IEnumerable<Post> Posts {get; set;}
+<<<<<<< HEAD
 
         public IEnumerable<Comment> Comments {get; set;}
+=======
+>>>>>>> 6f95a84deafe7d06a3321b118e8898536ea9454c
     }
 }

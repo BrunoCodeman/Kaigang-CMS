@@ -7,6 +7,7 @@ namespace kaigang.Models.Entities
     {
         public DbSet<Post> Posts;
         public DbSet<User> Users;
+
         public DbSet<Page> Pages;
         public DbSet<Poll> Polls;
         public DbSet<Comment> Comments;
@@ -21,7 +22,6 @@ namespace kaigang.Models.Entities
             modelBuilder.Entity<Poll>().ToTable("Polls");
             modelBuilder.Entity<Post>().ToTable("Posts");
             modelBuilder.Entity<Comment>().ToTable("Comments");
-            
         }
     }
 }

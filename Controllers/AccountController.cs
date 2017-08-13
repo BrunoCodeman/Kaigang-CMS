@@ -67,7 +67,11 @@ namespace kaigang.Controllers
                 }
                 if (result.RequiresTwoFactor)
                 {
+<<<<<<< HEAD
                     return RedirectToAction(nameof(this.Login), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+=======
+                    return Redirect(nameof(SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+>>>>>>> 6f95a84deafe7d06a3321b118e8898536ea9454c
                 }
                 if (result.IsLockedOut)
                 {
