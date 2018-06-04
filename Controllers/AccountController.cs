@@ -15,7 +15,7 @@ namespace kaigang.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private static bool _databaseChecked;
-        
+
         public AccountController( UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
@@ -62,16 +62,12 @@ namespace kaigang.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    
+
                     return Redirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
-<<<<<<< HEAD
                     return RedirectToAction(nameof(this.Login), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-=======
-                    return Redirect(nameof(SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
->>>>>>> 6f95a84deafe7d06a3321b118e8898536ea9454c
                 }
                 if (result.IsLockedOut)
                 {
