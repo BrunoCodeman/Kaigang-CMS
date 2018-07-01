@@ -43,6 +43,7 @@ namespace Kaigang.Models.Services
                 return res == 1;
             }
         }
+
         async public static Task<bool> Delete(T entity)
         {
             using (var ctx = new KaigangDbContext())
@@ -52,6 +53,7 @@ namespace Kaigang.Models.Services
                 return res > 0 ;
             }
         }
+        
         async public static Task<T> Get(params object[] keyValues)
         {
             using (var ctx = new KaigangDbContext())
@@ -62,11 +64,14 @@ namespace Kaigang.Models.Services
 
         async public static Task<IEnumerable<T>> GetMany(Func<T, bool> ft)
         {
-            using (var ctx = new KaigangDbContext())
-            {
-                return await ctx.Set<T>().Where(ft).AsQueryable().ToListAsync();
-            }
-        }
+            return await Task.Run(() => {
+                using (var ctx = new KaigangDbContext())
+                {
+                    return ctx.Set<T>().Where(ft).ToList();
+                }
+            });
+            
+         }
 
     }
 }

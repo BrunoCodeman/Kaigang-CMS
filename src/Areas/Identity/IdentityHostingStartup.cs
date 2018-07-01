@@ -16,11 +16,7 @@ namespace kaigang.Areas.Identity
         {
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<ApplicationContext>(options =>
-                        options.UseMySql("Server=172.17.0.2;database=kaigang;uid=root;pwd=root;")
-                    // options.UseSqlServer(
-                    //     context.Configuration.GetConnectionString("ApplicationContextConnection"))
-                        );
-
+                    options.UseMySql("Server=172.17.0.2;database=kaigang;uid=root;pwd=root;"));
                 services.AddDefaultIdentity<KaigangUser>()
                     .AddEntityFrameworkStores<ApplicationContext>();
             });

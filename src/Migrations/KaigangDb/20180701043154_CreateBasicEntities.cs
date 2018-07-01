@@ -21,22 +21,6 @@ namespace kaigang.Migrations.KaigangDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "Polls",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    StartDate = table.Column<DateTime>(nullable: false),
-                    EndDate = table.Column<DateTime>(nullable: false),
-                    Options = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Polls", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -49,12 +33,6 @@ namespace kaigang.Migrations.KaigangDb
                 {
                     table.PrimaryKey("PK_Users", x => x.ID);
                     table.UniqueConstraint("AK_Users_Email", x => x.Email);
-                    table.ForeignKey(
-                        name: "FK_Users_Polls_PollID",
-                        column: x => x.PollID,
-                        principalTable: "Polls",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,6 +50,29 @@ namespace kaigang.Migrations.KaigangDb
                     table.ForeignKey(
                         name: "FK_Comments_Users_AuthorID",
                         column: x => x.AuthorID,
+                        principalTable: "Users",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Polls",
+                columns: table => new
+                {
+                    ID = table.Column<Guid>(nullable: false),
+                    OwnedByID = table.Column<Guid>(nullable: false),
+                    Title = table.Column<string>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    Options = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Polls", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Polls_Users_OwnedByID",
+                        column: x => x.OwnedByID,
                         principalTable: "Users",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -106,6 +107,11 @@ namespace kaigang.Migrations.KaigangDb
                 column: "AuthorID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Polls_OwnedByID",
+                table: "Polls",
+                column: "OwnedByID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Posts_AuthorID",
                 table: "Posts",
                 column: "AuthorID");
@@ -114,10 +120,22 @@ namespace kaigang.Migrations.KaigangDb
                 name: "IX_Users_PollID",
                 table: "Users",
                 column: "PollID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Users_Polls_PollID",
+                table: "Users",
+                column: "PollID",
+                principalTable: "Polls",
+                principalColumn: "ID",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Polls_Users_OwnedByID",
+                table: "Polls");
+
             migrationBuilder.DropTable(
                 name: "Comments");
 

@@ -9,7 +9,7 @@ using kaigang.Areas.Identity.Data;
 namespace kaigang.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180701012306_CreateIdentitySchema")]
+    [Migration("20180701043141_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

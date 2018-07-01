@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace kaigang.Migrations.KaigangDb
 {
     [DbContext(typeof(KaigangDbContext))]
-    [Migration("20180630225332_CreateBasicEntities")]
+    [Migration("20180701043154_CreateBasicEntities")]
     partial class CreateBasicEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,12 +65,16 @@ namespace kaigang.Migrations.KaigangDb
 
                     b.Property<string>("Options");
 
+                    b.Property<Guid>("OwnedByID");
+
                     b.Property<DateTime>("StartDate");
 
                     b.Property<string>("Title")
                         .IsRequired();
 
                     b.HasKey("ID");
+
+                    b.HasIndex("OwnedByID");
 
                     b.ToTable("Polls");
                 });
@@ -128,6 +132,14 @@ namespace kaigang.Migrations.KaigangDb
                     b.HasOne("Kaigang.Models.Entities.User", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Kaigang.Models.Entities.Poll", b =>
+                {
+                    b.HasOne("Kaigang.Models.Entities.User", "OwnedBy")
+                        .WithMany()
+                        .HasForeignKey("OwnedByID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

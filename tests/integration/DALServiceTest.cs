@@ -4,6 +4,8 @@ using Kaigang.Models.Services;
 using Kaigang.Models.Entities;
 using Kaigang.Models;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Kaigang.Tests.Integration 
 {
@@ -27,8 +29,8 @@ namespace Kaigang.Tests.Integration
             }
         }
 
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+        [TearDown]
+        public void TearDown()
         {
             using(var ctx = new KaigangDbContext())
             {
@@ -86,7 +88,19 @@ namespace Kaigang.Tests.Integration
         [Test]
         public void MustGetManyEntities()
         {
-            
+            //deleting the page created on SetUp
+            DALService<Page>.Delete(new Page() {ID = id});
+
+            int i = 5;
+            while(i > 0)
+            {
+                var res = DALService<Page>.Add(new Page(){Content = $"{_content}{i}", Name = $"{_name}{i}"}).Result;
+                --i;
+            }
+
+            var pages = DALService<Page>.GetMany(p => p.Name.Contains(_name) && p.Content.Contains(_content));
+            Assert.IsTrue(pages.Result.Count() == 5);
+
         }
     }
 }
