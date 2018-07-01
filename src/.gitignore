@@ -1,0 +1,9 @@
+obj/
+bin/
+.vscode/
+_config.yml
+_config.yml
+bin/
+obj/
+tests/obj/
+tests/bin/
