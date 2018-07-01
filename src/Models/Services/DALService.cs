@@ -44,6 +44,11 @@ namespace Kaigang.Models.Services
             }
         }
 
+        /// <summary>
+        /// Deletes and Entity
+        /// </summary>
+        /// <param name="entity">Entity to be removed from database</param>
+        /// <returns>Operation successfull or not</returns>
         async public static Task<bool> Delete(T entity)
         {
             using (var ctx = new KaigangDbContext())
@@ -53,7 +58,11 @@ namespace Kaigang.Models.Services
                 return res > 0 ;
             }
         }
-        
+        /// <summary>
+        /// Get an entity from the database
+        /// </summary>
+        /// <param name="keyValues">Key-columns from the entity/table</param>
+        /// <returns>An entity if founds, otherwise null</returns>
         async public static Task<T> Get(params object[] keyValues)
         {
             using (var ctx = new KaigangDbContext())
@@ -62,6 +71,11 @@ namespace Kaigang.Models.Services
             }
         }
 
+        /// <summary>
+        /// Returns a list of entities based on an expresion
+        /// </summary>
+        /// <param name="ft">The expressiont to query the Database</param>
+        /// <returns>A list with the entities found</returns>
         async public static Task<IEnumerable<T>> GetMany(Func<T, bool> ft)
         {
             return await Task.Run(() => {
