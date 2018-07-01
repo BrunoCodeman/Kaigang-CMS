@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kaigang.Models.Entities
 {
@@ -15,7 +13,10 @@ namespace Kaigang.Models.Entities
         [Key]
         [Required]
         public Guid ID {get; set;}
-
+        
+        [Required]
+        public User OwnedBy {get; set;}
+        
         [Required]
         public string Title {get; set;}
 

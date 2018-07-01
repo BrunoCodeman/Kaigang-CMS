@@ -14,8 +14,12 @@ namespace kaigang.Migrations.KaigangDb
         {
 #pragma warning disable 612, 618
             modelBuilder
+<<<<<<< HEAD:src/Migrations/KaigangDb/KaigangDbContextModelSnapshot.cs
                 .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+=======
+                .HasAnnotation("ProductVersion", "1.1.2");
+>>>>>>> a949f48c0317e7c81eb7b165a1250c8ef2340288:Migrations/KaigangContextModelSnapshot.cs
 
             modelBuilder.Entity("Kaigang.Models.Entities.Comment", b =>
                 {
@@ -72,6 +76,10 @@ namespace kaigang.Migrations.KaigangDb
 
                     b.ToTable("Polls");
                 });
+<<<<<<< HEAD:src/Migrations/KaigangDb/KaigangDbContextModelSnapshot.cs
+=======
+                .HasAnnotation("ProductVersion", "1.1.1");
+>>>>>>> a949f48c0317e7c81eb7b165a1250c8ef2340288:Migrations/KaigangContextModelSnapshot.cs
 
             modelBuilder.Entity("Kaigang.Models.Entities.Post", b =>
                 {
@@ -127,15 +135,27 @@ namespace kaigang.Migrations.KaigangDb
                         .WithMany("Comments")
                         .HasForeignKey("AuthorID")
                         .OnDelete(DeleteBehavior.Cascade);
+
+<<<<<<< HEAD:src/Migrations/KaigangDb/KaigangDbContextModelSnapshot.cs
+            modelBuilder.Entity("Kaigang.Models.Entities.Post", b =>
+=======
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Kaigang.Models.Entities.Post", b =>
+            modelBuilder.Entity("kaigang.Models.Entities.Post", b =>
+>>>>>>> a949f48c0317e7c81eb7b165a1250c8ef2340288:Migrations/KaigangContextModelSnapshot.cs
                 {
                     b.HasOne("Kaigang.Models.Entities.User", "Author")
                         .WithMany("Posts")
                         .HasForeignKey("AuthorID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
+<<<<<<< HEAD:src/Migrations/KaigangDb/KaigangDbContextModelSnapshot.cs
 
             modelBuilder.Entity("Kaigang.Models.Entities.User", b =>
                 {
@@ -144,6 +164,8 @@ namespace kaigang.Migrations.KaigangDb
                         .HasForeignKey("PollID");
                 });
 #pragma warning restore 612, 618
+=======
+>>>>>>> a949f48c0317e7c81eb7b165a1250c8ef2340288:Migrations/KaigangContextModelSnapshot.cs
         }
     }
 }

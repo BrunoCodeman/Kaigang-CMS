@@ -15,7 +15,7 @@ namespace Kaigang.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private static bool _databaseChecked;
-        
+
         public AccountController( UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
@@ -62,7 +62,7 @@ namespace Kaigang.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    
+
                     return Redirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
