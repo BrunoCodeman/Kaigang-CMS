@@ -9,7 +9,7 @@ namespace Kaigang.Models.Services
 {
     /// <summary>
     /// This is the Data Access Layer Service. It is responsible for Database communication
-    /// If you need to insert an Entity into the Database, just use you entity type as T
+    /// If you need to insert an Entity into the Database, just use your entity type as <T>
     /// when invoking this service
     /// </summary>
     /// <typeparam name="T">An enttity T to be inserted on the Database</typeparam>
