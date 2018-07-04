@@ -12,7 +12,7 @@ namespace Kaigang.Models.Services
     /// If you need to insert an Entity into the Database, just use your entity type as <T>
     /// when invoking this service
     /// </summary>
-    /// <typeparam name="T">An enttity T to be inserted on the Database</typeparam>
+    /// <typeparam name="T">An entity T to be inserted on the Database</typeparam>
     public static class DALService<T> where T : class
     {
         /// <summary>
